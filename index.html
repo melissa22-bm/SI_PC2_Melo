@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -53,4 +54,61 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Beca</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Registro de Postulantes</h1>
+    <form id="formPostulante">
+        <div class="form-group">
+            <input type="text" id="nombres" placeholder="Nombres" required>
+            <input type="text" id="apellidos" placeholder="Apellidos" required>
+            <input type="text" id="dni" placeholder="DNI" required>
+            <input type="email" id="correo" placeholder="Correo" required>
+            <input type="text" id="celular" placeholder="Celular" required>
+            <input type="number" id="edad" placeholder="Edad" required>
+            
+            <select id="sexo_id"><option value="">Seleccione Sexo</option></select>
+            <select id="grado_id"><option value="">Seleccione Grado</option></select>
+            <select id="carrera_id"><option value="">Seleccione Carrera</option></select>
+            <select id="modalidad_id"><option value="">Seleccione Modalidad</option></select>
+            
+            <button type="submit">Registrar Postulante</button>
+        </div>
+    </form>
+
+    <hr>
+    <h2>Postulantes registrados</h2>
+    
+    <label>Filtrar por sexo:</label>
+    <select id="filtroSexo">
+        <option value="">Todos</option>
+    </select>
+    
+    <table id="tablaPostulantes" border="1">
+        <thead>
+            <tr>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>DNI</th>
+                <th>Correo</th>
+                <th>Sexo</th>
+                <th>Grado</th>
+                <th>Carrera</th>
+                <th>Modalidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tbody>
+    </table>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+>>>>>>> b29ed05e7b5f28ea52db5f44dd0115ac1ccfd3cb
 </html>

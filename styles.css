@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Estilos globales */
 body {
     font-family: Arial, sans-serif;
@@ -66,3 +67,73 @@ th {
     background-color: #343a40;
     color: white;
 }
+=======
+/* Estilos globales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    padding: 20px;
+    margin: 0;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+/* Contenedor del formulario */
+#formPostulante {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.form-group input, 
+.form-group select {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Importante para que el padding no afecte el tamaño */
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Estilos de la tabla */
+#tablaPostulantes {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #343a40;
+    color: white;
+}
+>>>>>>> b29ed05e7b5f28ea52db5f44dd0115ac1ccfd3cb
