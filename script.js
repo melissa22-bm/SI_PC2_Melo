@@ -34,51 +34,76 @@ async function cargarCatalogos() {
 
 // 3. Función actualizada para listar postulantes con nombres reales
 async function listarPostulantes() {
-    // Usamos el Join para traer los datos relacionados de los catálogos
-   // En lugar de .select('*'), usa esta estructura:
     const { data, error } = await miClienteSupabase
         .from('postulantes')
         .select(`
-            nombres, 
-            apellidos, 
-            dni, 
-            correo, 
-            sexos(nombre), 
-            grados_academicos(nombre), 
-            carreras_interes(nombre), 
-            modalidades_estudio(nombre)
+            nombres, apellidos, dni, correo, celular, edad,
+            institucion_educativa, promedio_academico, observaciones,
+            sexos(nombre), grados_academicos(nombre), 
+            carreras_interes(nombre), modalidades_estudio(nombre)
         `);
     
-    if (error) {
-        console.error("Error al listar:", error);
-        return;
-    }
+    if (error) { console.error(error); return; }
 
     const tbody = document.querySelector('#tablaPostulantes tbody');
-    if (!tbody) return;
-
     tbody.innerHTML = ''; 
 
     data.forEach(p => {
-        // Accedemos a p.nombre_de_tabla.nombre (ej: p.sexos.nombre)
         tbody.innerHTML += `
             <tr>
                 <td>${p.nombres}</td>
                 <td>${p.apellidos}</td>
                 <td>${p.dni}</td>
                 <td>${p.correo}</td>
+                <td>${p.celular || 'N/A'}</td>
+                <td>${p.edad || 'N/A'}</td>
                 <td>${p.sexos?.nombre || 'N/A'}</td>
+                <td>${p.institucion_educativa || 'N/A'}</td>
+                <td>${p.promedio_academico || 'N/A'}</td>
                 <td>${p.grados_academicos?.nombre || 'N/A'}</td>
                 <td>${p.carreras_interes?.nombre || 'N/A'}</td>
                 <td>${p.modalidades_estudio?.nombre || 'N/A'}</td>
+                <td>${p.observaciones || 'N/A'}</td>
             </tr>`;
     });
 }
 
-// 4. Función para guardar los datos
+// 4. Función para guardar los datos con validaciones estrictas
 document.getElementById('formPostulante').addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Captura de valores
+    const nombres = document.getElementById('nombres').value;
+    const apellidos = document.getElementById('apellidos').value;
+    const dni = document.getElementById('dni').value;
+    const correo = document.getElementById('correo').value;
+    const celular = document.getElementById('celular').value;
+    const edad = parseInt(document.getElementById('edad').value);
+
+    // Validaciones Profesionales
+    if (!/^[A-Za-zÀ-ÿ\s]+$/.test(nombres) || !/^[A-Za-zÀ-ÿ\s]+$/.test(apellidos)) {
+        alert("Error: Nombres y apellidos solo deben contener letras.");
+        return; 
+    }
+    if (!/^\d{8}$/.test(dni)) {
+        alert("Error: El DNI debe tener exactamente 8 dígitos.");
+        return;
+    }
+    if (!/^\d{9}$/.test(celular)) {
+        alert("Error: El celular debe tener exactamente 9 dígitos.");
+        return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
+        alert("Error: Formato de correo electrónico inválido.");
+        return;
+    }
+    if (isNaN(edad) || edad < 16 || edad > 100) {
+        alert("Error: La edad debe ser un número entre 16 y 100.");
+        return;
+    }
+
+    // Si pasó las validaciones, preparamos el objeto
+    // Dentro de la función de registro:
     const nuevoPostulante = {
         nombres: document.getElementById('nombres').value,
         apellidos: document.getElementById('apellidos').value,
@@ -86,12 +111,16 @@ document.getElementById('formPostulante').addEventListener('submit', async (e) =
         correo: document.getElementById('correo').value,
         celular: document.getElementById('celular').value,
         edad: parseInt(document.getElementById('edad').value),
+        institucion_educativa: document.getElementById('institucion').value,
+        promedio_academico: parseFloat(document.getElementById('promedio').value),
+        observaciones: document.getElementById('observaciones').value,
         sexo_id: document.getElementById('sexo_id').value,
         grado_id: document.getElementById('grado_id').value,
         carrera_id: document.getElementById('carrera_id').value,
         modalidad_id: document.getElementById('modalidad_id').value
     };
 
+    // Envío a Supabase
     const { error } = await miClienteSupabase.from('postulantes').insert([nuevoPostulante]);
 
     if (error) {

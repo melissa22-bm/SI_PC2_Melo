@@ -66,3 +66,63 @@ th {
     background-color: #343a40;
     color: white;
 }
+
+/* Esto hace que el textarea tenga el mismo estilo que tus inputs */
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Importante para el tamaño */
+    font-family: Arial, sans-serif;
+    resize: vertical; /* Permite al usuario ajustar el alto */
+    min-height: 80px; /* Un tamaño inicial cómodo */
+}
+
+/* Estilo para el contenedor del filtro */
+#filtroSexo {
+    padding: 8px 15px;       /* Un poco de espacio interno */
+    margin: 10px 0 20px 10px; /* Espacio arriba, abajo y a la izquierda */
+    border: 1px solid #ccc;  /* Borde gris sutil */
+    border-radius: 5px;      /* Bordes redondeados */
+    background-color: #fff;  /* Fondo blanco */
+    font-size: 14px;         /* Tamaño de letra legible */
+    cursor: pointer;         /* Cursor tipo manita al pasar encima */
+    outline: none;           /* Quita el borde de enfoque azul del navegador */
+    transition: all 0.3s;    /* Animación suave al pasar el mouse */
+}
+
+/* Efecto al pasar el cursor */
+#filtroSexo:hover {
+    border-color: #28a745;   /* Cambia a verde al pasar el mouse */
+}
+
+/* Mejora el texto de la etiqueta "Filtrar por sexo" */
+label[for="filtroSexo"], 
+label { /* Si no tienes un 'for' específico, afecta a los labels */
+    font-weight: bold;
+    color: #555;
+}
+
+.input-container {
+    margin-bottom: 15px;
+}
+
+.label-sutil {
+    display: block;
+    font-size: 11px;           /* Muy pequeño para no resaltar */
+    color: #888;              /* Gris claro */
+    margin-bottom: 4px;       /* Un poco de aire */
+    text-transform: uppercase;/* Da un toque moderno */
+    font-weight: 600;
+}
+
+/* Para que los selects se vean igual que los inputs */
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+}

@@ -9,17 +9,51 @@
     <h1>Registro de Postulantes</h1>
     <form id="formPostulante">
         <div class="form-group">
-            <input type="text" id="nombres" placeholder="Nombres" required>
-            <input type="text" id="apellidos" placeholder="Apellidos" required>
-            <input type="text" id="dni" placeholder="DNI" required>
-            <input type="email" id="correo" placeholder="Correo" required>
-            <input type="text" id="celular" placeholder="Celular" required>
-            <input type="number" id="edad" placeholder="Edad" required>
+            <!-- Añadimos patrones (pattern) y límites (maxlength) -->
+            <input type="text" id="nombres" placeholder="Nombres" required pattern="[A-Za-zÀ-ÿ\s]+" title="Solo se permiten letras">
+            <input type="text" id="apellidos" placeholder="Apellidos" required pattern="[A-Za-zÀ-ÿ\s]+" title="Solo se permiten letras">
+            <input type="text" id="dni" placeholder="DNI" required pattern="\d{8}" title="El DNI debe tener 8 dígitos" maxlength="8">
+            <input type="email" id="correo" placeholder="ejemplo@correo.com" required title="Ingresa un correo válido (ejemplo: usuario@dominio.com)">
+            <input type="text" id="celular" placeholder="Celular" required pattern="\d{9}" title="El celular debe tener 9 dígitos" maxlength="9">
+            <input type="number" id="edad" placeholder="Edad" required min="16" max="100">
+            <input type="text" id="institucion" placeholder="Institución Educativa" required>
+            <input type="number" id="promedio" placeholder="Promedio Académico (0-20)" step="0.1" min="0" max="20" required>
             
-            <select id="sexo_id"><option value="">Seleccione Sexo</option></select>
-            <select id="grado_id"><option value="">Seleccione Grado</option></select>
-            <select id="carrera_id"><option value="">Seleccione Carrera</option></select>
-            <select id="modalidad_id"><option value="">Seleccione Modalidad</option></select>
+            <!-- Añadimos required a los select para asegurar que elijan una opción -->
+            <div class="input-container">
+                <span class="label-sutil">Sexo</span>
+                <select id="sexo_id" required>
+                    <option value="">Seleccione...</option>
+                </select>
+            </div>
+
+            <div class="input-container">
+                <span class="label-sutil">Grado Académico</span>
+                <select id="grado_id" required>
+                    <option value="">Seleccione...</option>
+                </select>
+            </div>
+
+            <div class="input-container">
+                <span class="label-sutil">Carrera de Interés</span>
+                <select id="carrera_id" required>
+                    <option value="">Seleccione...</option>
+                </select>
+            </div>
+
+            <div class="input-container">
+                <span class="label-sutil">Modalidad de Estudio</span>
+                <select id="modalidad_id" required>
+                    <option value="">Seleccione...</option>
+                </select>
+            </div>
+
+            <div class="input-container">
+                <span class="label-sutil">Observaciones</span>
+                <textarea id="observaciones" placeholder="Escriba aquí alguna nota adicional..."></textarea>
+            </div>
+
+            <textarea id="observaciones" placeholder="Observaciones"></textarea>
             
             <button type="submit">Registrar Postulante</button>
         </div>
@@ -40,10 +74,15 @@
                 <th>Apellidos</th>
                 <th>DNI</th>
                 <th>Correo</th>
+                <th>Celular</th>
+                <th>Edad</th>
                 <th>Sexo</th>
+                <th>Institución</th>
+                <th>Promedio</th>
                 <th>Grado</th>
                 <th>Carrera</th>
                 <th>Modalidad</th>
+                <th>Observaciones</th>
             </tr>
         </thead>
         <tbody>
